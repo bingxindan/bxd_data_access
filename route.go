@@ -1,26 +1,27 @@
 package main
 
 import (
-	"bxd_data_access/framework"
+	"bxd_data_access/framework/gin"
 	"bxd_data_access/framework/middleware"
 )
 
-func registerRouter(core *framework.Core) {
+func registerRouter(core *gin.Engine) {
 	// 静态路由+HTTP方法匹配
-	core.Get("/user/login", middleware.Test3(), UserLoginController)
+	core.GET("/user/login", middleware.Test3(), UserLoginController)
 
 	// 批量通用前缀
 	subjectApi := core.Group("/subject")
 	{
+		subjectApi.Use(middleware.Test3())
 		// 动态路由
-		subjectApi.Delete("/:id", SubjectDelController)
-		subjectApi.Put("/:id", SubjectUpdateController)
-		subjectApi.Get("/:id", SubjectGetController)
-		subjectApi.Get("/list/all", SubjectListController)
+		subjectApi.DELETE("/:id", SubjectDelController)
+		subjectApi.PUT("/:id", SubjectUpdateController)
+		subjectApi.GET("/:id", SubjectGetController)
+		subjectApi.GET("/list/all", SubjectListController)
 
 		subjectInnerApi := subjectApi.Group("/info")
 		{
-			subjectInnerApi.Get("/name", SubjectNameController)
+			subjectInnerApi.GET("/name", SubjectNameController)
 		}
 	}
 }

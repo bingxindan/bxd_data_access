@@ -5,6 +5,7 @@
 package gin
 
 import (
+	"bxd_data_access/framework"
 	"fmt"
 	"html/template"
 	"net"
@@ -82,6 +83,9 @@ const (
 // Engine is the framework's instance, it contains the muxer, middleware and configuration settings.
 // Create an instance of Engine, by using New() or Default()
 type Engine struct {
+	// 容器
+	container framework.Container
+
 	RouterGroup
 
 	// RedirectTrailingSlash enables automatic redirection if the current route can't be matched but a

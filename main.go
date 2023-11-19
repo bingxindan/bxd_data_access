@@ -1,7 +1,7 @@
 package main
 
 import (
-	"bxd_data_access/framework"
+	"bxd_data_access/framework/gin"
 	"bxd_data_access/framework/middleware"
 	"context"
 	"log"
@@ -13,12 +13,13 @@ import (
 )
 
 func main() {
-	core := framework.NewCore()
+	// 创建engine结构
+	core := gin.New()
+	// 绑定具体的服务
+	//core.Bind()
 
-	//core.Use(middleware.Test1(), middleware.Test2())
-	core.Use(middleware.Recovery())
+	core.Use(gin.Recovery())
 	core.Use(middleware.Cost())
-	//core.Use(middleware.Timeout(1*time.Second))
 
 	registerRouter(core)
 
