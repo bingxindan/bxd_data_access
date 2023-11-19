@@ -18,6 +18,7 @@ func StringToBytes(s string) []byte {
 
 // BytesToString converts byte slice to string without a memory allocation.
 // For more details, see https://github.com/golang/go/issues/53003#issuecomment-1140276077.
-func BytesToString(b []byte) string {
-	return unsafe.String(unsafe.SliceData(b), len(b))
+func BytesToString(b []unsafe.ArbitraryType) string {
+	//return unsafe.String(unsafe.SliceData(b), len(b))
+	return unsafe.String((*byte)(unsafe.SliceData(b)), unsafe.IntegerType(len(b)))
 }
