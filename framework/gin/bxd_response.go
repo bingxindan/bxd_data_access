@@ -3,7 +3,7 @@ package gin
 import (
 	"encoding/xml"
 	"fmt"
-	"github.com/gin-gonic/gin/internal/json"
+	"github.com/bingxindan/bxd_data_access/framework/gin/internal/json"
 	"html/template"
 	"net/http"
 	"net/url"

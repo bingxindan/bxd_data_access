@@ -7,6 +7,8 @@ package gin
 import (
 	"fmt"
 	"github.com/bingxindan/bxd_data_access/framework"
+	"github.com/bingxindan/bxd_data_access/framework/gin/internal/bytesconv"
+	"github.com/bingxindan/bxd_data_access/framework/gin/render"
 	"html/template"
 	"net"
 	"net/http"
@@ -16,8 +18,6 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/gin-gonic/gin/internal/bytesconv"
-	"github.com/gin-gonic/gin/render"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 )
@@ -192,6 +192,10 @@ func New() *Engine {
 			basePath: "/",
 			root:     true,
 		},
+
+		// 注入 container
+		container: framework.NewBxdContainer(),
+
 		FuncMap:                template.FuncMap{},
 		RedirectTrailingSlash:  true,
 		RedirectFixedPath:      false,
@@ -233,10 +237,12 @@ func (engine *Engine) Handler() http.Handler {
 	return h2c.NewHandler(engine, h2s)
 }
 
+// engine创建context
 func (engine *Engine) allocateContext(maxParams uint16) *Context {
 	v := make(Params, 0, maxParams)
 	skippedNodes := make([]skippedNode, 0, engine.maxSections)
-	return &Context{engine: engine, params: &v, skippedNodes: &skippedNodes}
+	// 在分配新的Context的时候，注入了container
+	return &Context{engine: engine, params: &v, skippedNodes: &skippedNodes, container: engine.container}
 }
 
 // Delims sets template left and right delims and returns an Engine instance.

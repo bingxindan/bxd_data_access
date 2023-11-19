@@ -1,9 +1,10 @@
 package main
 
 import (
-	"bxd_data_access/framework/gin"
-	"bxd_data_access/framework/middleware"
 	"context"
+	"github.com/bingxindan/bxd_data_access/framework/gin"
+	"github.com/bingxindan/bxd_data_access/framework/middleware"
+	"github.com/bingxindan/bxd_data_access/provider/demo"
 	"log"
 	"net/http"
 	"os"
@@ -16,7 +17,7 @@ func main() {
 	// 创建engine结构
 	core := gin.New()
 	// 绑定具体的服务
-	//core.Bind()
+	core.Bind(&demo.DemoServiceProvider{})
 
 	core.Use(gin.Recovery())
 	core.Use(middleware.Cost())

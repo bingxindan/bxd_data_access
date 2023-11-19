@@ -7,11 +7,10 @@ package render
 import (
 	"bytes"
 	"fmt"
+	"github.com/bingxindan/bxd_data_access/framework/gin/internal/bytesconv"
+	"github.com/bingxindan/bxd_data_access/framework/gin/internal/json"
 	"html/template"
 	"net/http"
-
-	"github.com/gin-gonic/gin/internal/bytesconv"
-	"github.com/gin-gonic/gin/internal/json"
 )
 
 // JSON contains the given interface object.

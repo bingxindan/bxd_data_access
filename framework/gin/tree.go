@@ -6,12 +6,11 @@ package gin
 
 import (
 	"bytes"
+	"github.com/bingxindan/bxd_data_access/framework/gin/internal/bytesconv"
 	"net/url"
 	"strings"
 	"unicode"
 	"unicode/utf8"
-
-	"github.com/gin-gonic/gin/internal/bytesconv"
 )
 
 var (

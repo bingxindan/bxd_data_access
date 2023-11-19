@@ -1,7 +1,7 @@
 package main
 
 import (
-	"bxd_data_access/framework/gin"
+	"github.com/bingxindan/bxd_data_access/framework/gin"
 	"time"
 )
 

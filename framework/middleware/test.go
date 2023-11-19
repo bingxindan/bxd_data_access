@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"bxd_data_access/framework/gin"
 	"fmt"
+	"github.com/bingxindan/bxd_data_access/framework/gin"
 )
 
 func Test1() gin.HandlerFunc {

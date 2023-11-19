@@ -1,9 +1,9 @@
 package middleware
 
 import (
-	"bxd_data_access/framework/gin"
 	"context"
 	"fmt"
+	"github.com/bingxindan/bxd_data_access/framework/gin"
 	"log"
 	"time"
 )

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"bxd_data_access/framework/gin"
-	"bxd_data_access/framework/middleware"
+	"github.com/bingxindan/bxd_data_access/framework/gin"
+	"github.com/bingxindan/bxd_data_access/framework/middleware"
 )
 
 func registerRouter(core *gin.Engine) {

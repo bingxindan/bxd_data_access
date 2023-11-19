@@ -6,6 +6,7 @@ package gin
 
 import (
 	"errors"
+	"github.com/bingxindan/bxd_data_access/framework"
 	"io"
 	"log"
 	"math"
@@ -49,6 +50,9 @@ const abortIndex int8 = math.MaxInt8 >> 1
 // Context is the most important part of gin. It allows us to pass variables between middleware,
 // manage the flow, validate the JSON of a request and render a JSON response for example.
 type Context struct {
+	// Context 中保存容器
+	container framework.Container
+
 	writermem responseWriter
 	Request   *http.Request
 	Writer    ResponseWriter

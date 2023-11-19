@@ -1,8 +1,8 @@
 package demo
 
 import (
-	"bxd_data_access/framework"
 	"fmt"
+	"github.com/bingxindan/bxd_data_access/framework"
 )
 
 // 服务提供方
