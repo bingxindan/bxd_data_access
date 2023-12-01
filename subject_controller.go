@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/bingxindan/bxd_data_access/app/provider/demo"
 	"github.com/bingxindan/bxd_data_access/framework/gin"
-	"github.com/bingxindan/bxd_data_access/provider/demo"
 )
 
 func SubjectAddController(c *gin.Context) {

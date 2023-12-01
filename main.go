@@ -2,9 +2,10 @@ package main
 
 import (
 	"context"
+	"github.com/bingxindan/bxd_data_access/app/provider/demo"
 	"github.com/bingxindan/bxd_data_access/framework/gin"
 	"github.com/bingxindan/bxd_data_access/framework/middleware"
-	"github.com/bingxindan/bxd_data_access/provider/demo"
+	"github.com/bingxindan/bxd_data_access/framework/provider/app"
 	"log"
 	"net/http"
 	"os"
@@ -17,12 +18,14 @@ func main() {
 	// 创建engine结构
 	core := gin.New()
 	// 绑定具体的服务
-	core.Bind(&demo.DemoServiceProvider{})
+	core.Bind(&app.BxdAppProvider{})
+	core.Bind(&demo.DemoProvider{})
 
 	core.Use(gin.Recovery())
 	core.Use(middleware.Cost())
 
-	registerRouter(core)
+	//registerRouter(core)
+	bxdHttp.Routes(core)
 
 	server := &http.Server{
 		// 自定义的请求核心处理函数
