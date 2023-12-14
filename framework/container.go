@@ -45,7 +45,7 @@ func NewBxdContainer() *BxdContainer {
 	}
 }
 
-// 输出服务容器中注册的关键字
+// PrintProviders 输出服务容器中注册的关键字
 func (bxd *BxdContainer) PrintProviders() []string {
 	var ret []string
 	for _, provider := range bxd.providers {
@@ -56,7 +56,7 @@ func (bxd *BxdContainer) PrintProviders() []string {
 	return ret
 }
 
-// 将服务容器和关键字做了绑定
+// Bind 将服务容器和关键字做了绑定
 func (bxd *BxdContainer) Bind(provider ServiceProvider) error {
 	bxd.lock.Lock()
 	defer bxd.lock.Unlock()

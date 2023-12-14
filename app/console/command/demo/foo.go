@@ -12,10 +12,16 @@ var FooCommand = &cobra.Command{
 	Aliases: []string{"fo", "f"},
 	Example: "foo命令的例子",
 	RunE: func(c *cobra.Command, args []string) error {
-		container := c.GetContainer()
-		log.Println(container)
+		//container := c.GetContainer()
+		log.Println("execute foo command")
 		return nil
 	},
+}
+
+// 绑定业务的命令
+func AddAppCommand(rootCmd *cobra.Command) {
+	// 每秒调用一次Foo命令
+	//rootCmd.
 }
 
 var Foo1Command = &cobra.Command{

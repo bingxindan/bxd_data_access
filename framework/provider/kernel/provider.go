@@ -6,12 +6,14 @@ import (
 	"github.com/bingxindan/bxd_data_access/framework/gin"
 )
 
+// BxdKernelProvider 提供web引擎
 type BxdKernelProvider struct {
 	HttpEngine *gin.Engine
 }
 
+// Register 注册服务提供者
 func (provider *BxdKernelProvider) Register(c framework.Container) framework.NewInstance {
-	return nil
+	return NewBxdKernelService
 }
 
 func (provider *BxdKernelProvider) Boot(c framework.Container) error {
