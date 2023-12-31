@@ -15,6 +15,30 @@ var appCommand = &cobra.Command{
 
 // AddKernelCommands will add all command/* to root command
 func AddKernelCommands(root *cobra.Command) {
-	// 挂载AppCommand命令
+	// app 命令
 	root.AddCommand(initAppCommand())
+	// env 命令
+	root.AddCommand(initEnvCommand())
+	// cron 命令
+	root.AddCommand(initCronCommand())
+	// config 命令
+	root.AddCommand(initConfigCommand())
+	// build 命令
+	root.AddCommand(initBuildCommand())
+	// go build
+	root.AddCommand(goCommand)
+	// dev
+	root.AddCommand(initDevCommand())
+	// cmd
+	root.AddCommand(initCmdCommand())
+	// provider
+	root.AddCommand(initProviderCommand())
+	// middleware
+	root.AddCommand(initMiddlewareCommand())
+	//
+	//// swagger
+	//swagger.IndexCommand.AddCommand(swagger.InitServeCommand())
+	//swagger.IndexCommand.AddCommand(swagger.GenCommand)
+	//root.AddCommand(swagger.IndexCommand)
+	//
 }

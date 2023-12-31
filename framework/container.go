@@ -158,3 +158,13 @@ func (bxd *BxdContainer) make(key string, params []interface{}, forceNew bool) (
 
 	return inst, nil
 }
+
+// NameList 列出容器中所有服务提供者的字符串凭证
+func (bxd *BxdContainer) NameList() []string {
+	var ret []string
+	for _, provider := range bxd.providers {
+		name := provider.Name()
+		ret = append(ret, name)
+	}
+	return ret
+}

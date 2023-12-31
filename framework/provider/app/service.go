@@ -14,6 +14,13 @@ type BxdApp struct {
 	container  framework.Container // 服务容器
 	baseFolder string              // 基础路径
 	appId      string              // 表示当前这个app的唯一id, 可以用于分布式锁等
+
+	configMap map[string]string // 配置加载
+}
+
+// AppID 表示这个App的唯一ID
+func (h BxdApp) AppID() string {
+	return h.appId
 }
 
 // Version 实现版本
@@ -93,11 +100,22 @@ func NewBxdApp(params ...interface{}) (interface{}, error) {
 		flag.Parse()
 	}
 	appId := uuid.New().String()
+	configMap := map[string]string{}
 
-	return &BxdApp{baseFolder: baseFolder, container: container, appId: appId}, nil
+	return &BxdApp{baseFolder: baseFolder, container: container, appId: appId, configMap: configMap}, nil
 }
 
-// AppID 表示这个App的唯一ID
-func (h BxdApp) AppID() string {
-	return h.appId
+// LoadAppConfig 加载配置map
+func (h *BxdApp) LoadAppConfig(kv map[string]string) {
+	for key, val := range kv {
+		h.configMap[key] = val
+	}
+}
+
+// AppFolder 代表app目录
+func (h *BxdApp) AppFolder() string {
+	if val, ok := h.configMap["app_folder"]; ok {
+		return val
+	}
+	return filepath.Join(h.BaseFolder(), "app")
 }
