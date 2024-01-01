@@ -186,3 +186,33 @@ func NewBxdConfig(params ...interface{}) (interface{}, error) {
 
 	return bxdConf, nil
 }
+
+// 查找某个路径的配置项
+func searchMap(source map[string]interface{}, path []string) interface{} {
+	if len(path) == 0 {
+		return source
+	}
+
+	// 判断是否有下个路径
+	next, ok := source[path[0]]
+	if ok {
+		// 判断这个路径是否为1
+		if len(path) == 1 {
+			return next
+		}
+
+		// 判断下一个路径的类型
+		switch next.(type) {
+		case map[interface{}]interface{}:
+			// 如果是interface的map，使用cast进行下value转换
+			return searchMap(cast.ToStringMap(next), path[1:])
+		case map[string]interface{}:
+			// 如果是map[string]，直接循环调用
+			return searchMap(next.(map[string]interface{}), path[1:])
+		default:
+			// 否则的话，返回nil
+			return nil
+		}
+	}
+	return nil
+}
